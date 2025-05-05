@@ -8,7 +8,7 @@ COPY etc /etc
 COPY usr /usr
 
 RUN \
-    rpm-ostree -y install \
+    dnf -y install \
 		distrobox \
 		git \
 		podman-compose \
