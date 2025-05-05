@@ -1,6 +1,5 @@
 ARG releasever=42
 ARG basearch=aarch64
-ARG kernelver=6.15.0-0.rc2.1a1d569a75f3a.23.cix.fc42
 
 FROM quay.io/fedora/fedora-bootc:${releasever}-${basearch}
 
@@ -12,10 +11,13 @@ RUN \
 		distrobox \
 		git \
 		podman-compose \
-		vim-enhanced \
-        kernel-${kernelver} \
-        kernel-core-${kernelver} \
-        kernel-modules-${kernelver}
+		vim-enhanced
+
+# This is needed for the latest kernel to be installed
+# in the container, which is required to get better support
+# for the custom Orion O6 kernel build.
+RUN \
+    dnf -y upgrade kernel
 
 RUN \
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
