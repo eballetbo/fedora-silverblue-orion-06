@@ -18,20 +18,3 @@ RUN \
 # for the custom Orion O6 kernel build.
 RUN \
     dnf -y upgrade kernel
-
-RUN \
-	systemctl enable libvirtd.service \
-	&& \
-	sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf \
-	&& \
-	systemctl enable rpm-ostreed-automatic.timer \
-	&& \
-	systemctl enable flatpak-system-update.timer \
-	&& \
-	rm -rf \
-		/tmp/* \
-		/var/* \
-	&& \
-	rpm-ostree cleanup -m \
-	&& \
-	ostree container commit
