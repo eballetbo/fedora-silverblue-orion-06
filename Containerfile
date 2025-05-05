@@ -20,9 +20,6 @@ RUN \
     dnf -y upgrade kernel
 
 RUN \
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    
-RUN \
 	systemctl enable libvirtd.service \
 	&& \
 	sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf \
