@@ -1,0 +1,54 @@
+name: Build and Publish Containers
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "20 02 * * *"
+  workflow_dispatch:  # Enable manual triggering
+
+permissions:
+  packages: write
+
+env:
+  IMAGE_NAME: fedora-silverblue-orion-o6
+  IMAGE_TAGS: latest ${{ github.sha }}
+  REGISTRY_URL: ghcr.io/${{ github.repository_owner }}
+  REGISTRY_USER: ${{ github.actor }}
+  REGISTRY_PASSWORD: ${{ github.token }}
+
+jobs:
+  build:
+    name: Build and push image
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+
+      - name: Install Packages
+        run: sudo apt install -y buildah podman
+
+      - uses: actions/checkout@v2
+
+      - name: Build Image
+        id: build-image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ env.IMAGE_NAME }}
+          tags: ${{ env.IMAGE_TAGS }}
+          containerfiles: |
+            ./Containerfile
+
+      - name: Push To Github Packages Registry
+        id: push-to-gh
+        uses: redhat-actions/push-to-registry@v2
+        if: github.event_name != 'pull_request'
+        with:
+          image: ${{ steps.build-image.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: ${{ env.REGISTRY_URL }}
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ env.REGISTRY_PASSWORD }}

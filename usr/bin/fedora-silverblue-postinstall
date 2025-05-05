@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+git config --global user.name "Enric Balletbo i Serra"
+git config --global user.email "eballetbo@gmail.com"
+git config --global core.editor vim
+git config --global alias.tag-fromlist "-c core.editor=\"sed -i '1s/^/FROMLIST: /'\" -c sequence.editor=vim rebase -i"
+git config --global alias.tag-fromgit "-c core.editor=\"sed -i '1s/^/FROMGIT: /'\" -c sequence.editor=vim rebase -i"
+
+# Layered Packages
+#   Google Chrome
+sudo rpm-ostree install google-chrome-stable
+
+# Flatseal - Manage Flatpak permissions
+flatpak install -y fedora com.github.tchx84.Flatseal
+
+# Dropbox - Access your files from any computer
+flatpak install -y flathub com.dropbox.Client
+#  run the application upon logging
+mkdir ~/.config/autostart
+ln -s /var/lib/flatpak/exports/share/applications/com.dropbox.Client.desktop ~/.config/autostart/com.dropbox.Client.desktop
+
+# Obisdian - Markdown-based knowledge base
+flatpak install -y flathub md.obsidian.Obsidian
+# Inkscape - Vector Graphics Editor
+flatpak install -y fedora org.inkscape.Inkscape
+# GIMP - Create images and edit photographs
+flatpak install -y fedora org.gimp.GIMP
+# Videos - Play movies
+flatpak install -y flathub org.gnome.Totem
+# Podman Desktop - Manage Podman and other container engines from a single UI
+flatpak install -y io.podman_desktop.PodmanDesktop
