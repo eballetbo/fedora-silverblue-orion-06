@@ -29,7 +29,11 @@ jobs:
         uses: jlumbroso/free-disk-space@main
 
       - name: Install Packages
-        run: sudo apt install -y buildah podman
+        run: sudo apt install -y buildah podman qemu-user-static
+
+      - name: Enable QEMU for aarch64
+        run: |
+          sudo update-binfmts --enable qemu-aarch64
 
       - uses: actions/checkout@v2
 
@@ -41,6 +45,8 @@ jobs:
           tags: ${{ env.IMAGE_TAGS }}
           containerfiles: |
             ./Containerfile
+          build-args: |
+            --platform linux/arm64
 
       - name: Push To Github Packages Registry
         id: push-to-gh
