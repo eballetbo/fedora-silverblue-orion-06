@@ -1,0 +1,2 @@
+GRUB_DEVICETREE=cix/sky1-orion-o6.dtb
+
