@@ -7,17 +7,6 @@ FROM quay.io/fedora/fedora-bootc:${releasever}-${basearch}
 COPY etc /etc
 COPY usr /usr
 
-RUN echo "[copr:copr.fedorainfracloud.org:eballetbo:fedora]" >> /etc/yum.repos.d/orion.repo \
-    && echo "name=Copr repo for fedora owned by eballetbo" >> /etc/yum.repos.d/orion.repo \
-    && echo "baseurl=https://download.copr.fedorainfracloud.org/results/eballetbo/fedora/fedora-$releasever-$basearch/" >> /etc/yum.repos.d/orion.repo \
-    && echo "type=rpm-md" >> /etc/yum.repos.d/orion.repo \
-    && echo "skip_if_unavailable=True" >> /etc/yum.repos.d/orion.repo \
-    && echo "gpgcheck=1" >> /etc/yum.repos.d/orion.repo \
-    && echo "gpgkey=https://download.copr.fedorainfracloud.org/results/eballetbo/fedora/pubkey.gpg" >> /etc/yum.repos.d/orion.repo \
-    && echo "repo_gpgcheck=0" >> /etc/yum.repos.d/orion.repo \
-    && echo "enabled=1" >> /etc/yum.repos.d/orion.repo \
-    && echo "enabled_metadata=1" >> /etc/yum.repos.d/orion.repo
-
 RUN \
     rpm-ostree -y install \
 		distrobox \
