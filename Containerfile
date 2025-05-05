@@ -2,7 +2,7 @@ ARG releasever=42
 ARG basearch=aarch64
 ARG kernelver=6.15.0-0.rc2.1a1d569a75f3a.23.cix.fc42
 
-FROM quay.io/fedora/fedora-bootc:${releasever}-${aarch64}
+FROM quay.io/fedora/fedora-bootc:${releasever}-${basearch}
 
 COPY etc /etc
 COPY usr /usr
