@@ -5,6 +5,7 @@ FROM quay.io/fedora/fedora-bootc:${releasever}-${basearch}
 
 COPY etc /etc
 COPY usr /usr
+COPY opt /opt
 
 RUN \
     dnf -y install \
