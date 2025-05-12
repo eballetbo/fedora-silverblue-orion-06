@@ -12,6 +12,7 @@ RUN \
 		distrobox \
 		git \
 		podman-compose \
+		tmate tmux \
 		vim-enhanced
 
 # This is needed for the latest kernel to be installed
