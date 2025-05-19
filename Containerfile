@@ -15,8 +15,3 @@ RUN \
 		tmate tmux \
 		vim-enhanced
 
-# This is needed for the latest kernel to be installed
-# in the container, which is required to get better support
-# for the custom Orion O6 kernel build.
-RUN \
-    dnf -y upgrade kernel
