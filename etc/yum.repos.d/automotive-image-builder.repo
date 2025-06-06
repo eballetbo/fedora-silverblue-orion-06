@@ -1,0 +1,10 @@
+[copr:copr.fedorainfracloud.org:group_centos-automotive-sig:automotive-image-builder]
+name=Copr repo for automotive-image-builder owned by @centos-automotive-sig
+baseurl=https://download.copr.fedorainfracloud.org/results/@centos-automotive-sig/automotive-image-builder/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/@centos-automotive-sig/automotive-image-builder/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

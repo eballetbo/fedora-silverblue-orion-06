@@ -1,0 +1,10 @@
+[copr:copr.fedorainfracloud.org:group_centos-automotive-sig:osbuild-auto]
+name=Copr repo for osbuild-auto owned by @centos-automotive-sig
+baseurl=https://download.copr.fedorainfracloud.org/results/@centos-automotive-sig/osbuild-auto/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/@centos-automotive-sig/osbuild-auto/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
