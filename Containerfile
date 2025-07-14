@@ -11,6 +11,7 @@ RUN \
     dnf -y install \
 		distrobox \
 		git \
+		krb5-workstation \
 		podman-compose \
 		python3-ramalama \
 		qemu-user-static \
