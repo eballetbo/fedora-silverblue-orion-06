@@ -14,6 +14,7 @@ RUN \
 		krb5-workstation \
 		podman-compose \
 		python3-ramalama \
+		sssd-kcm \
 		qemu-user-static \
 		tmate tmux \
 		vim-enhanced \
